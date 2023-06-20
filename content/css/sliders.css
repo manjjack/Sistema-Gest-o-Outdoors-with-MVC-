@@ -1,0 +1,22 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 4/jun/2023, 18:03:08
+    Author     : jackson
+*/
+
+
+body{
+    background-color: white;
+} 
+
+.work{
+    height: 20vh;
+}
+
+a{
+    color: black;
+}
+
