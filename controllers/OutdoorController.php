@@ -6,10 +6,10 @@
  */
 
 
-include_once '../../services/OutdoorServices.php';
+include_once '../services/OutdoorServices.php';
 
-include_once '../../model/Outdoor.php';
-include_once '../../repositories/OutdoorRepository.php';
+include_once '../model/Outdoor.php';
+include_once '../repositories/OutdoorRepository.php';
 
 class OutdoorController {
 

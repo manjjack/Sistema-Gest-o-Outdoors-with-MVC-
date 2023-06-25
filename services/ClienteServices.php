@@ -1,6 +1,6 @@
 <?php
 
-require_once 'repositories/ClienteRepository.php';
+require_once '../repositories/ClienteRepository.php';
 
 class ClienteServices {
 
@@ -12,6 +12,7 @@ class ClienteServices {
 
     public function registar(Cliente $cliente) {
         try {
+            
             $this->clienteRepository->registarCliente($cliente);
         } catch (Exception $e) {
             echo "An error occurred while: " . $e->getMessage();

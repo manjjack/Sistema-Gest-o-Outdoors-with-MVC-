@@ -1,10 +1,9 @@
 <?php
 include_once 'header.php';
-include_once '../controllers/AdminController.php';
+include_once '../controllers/UserController.php';
+include_once '../model/User.php';
 ?>
-<header>
-    <link rel="stylesheet" href="../content/css/form.css">
-</header>
+
 <!-- Pills navs -->
 <br> <br>
 <div class= "d-flex justify-content-center w-30">
@@ -40,16 +39,16 @@ include_once '../controllers/AdminController.php';
 <!-- Pills navs -->
 
 
-<form class="form w-30 text-center" method="POST">
+<form class="form w-30 text-center" method="POST" action="../repositories/autenticar.php">
   <!-- Email input -->
   <div class="form-outline mb-4">
-      <input type="text" id="form1Example1" class="form-control inputlogin" name="user" required />
+      <input type="text" id="form1Example1" class="form-control inputlogin" name="user" required  style="width: 300px; height: 40px; margin-left:38%"/>
     <label class="form-label" for="form1Example1">Username</label>
   </div>
 
   <!-- Password input -->
   <div class="form-outline mb-4">
-    <input type="password" id="form1Example2" class="form-control inputlogin" name="pass" required/>
+    <input type="password" id="form1Example2" class="form-control inputlogin" name="pass" required style="width: 300px; height: 40px;margin-left:38%"/>
     <label class="form-label" for="form1Example2" >Password</label>
   </div>
 
@@ -57,36 +56,12 @@ include_once '../controllers/AdminController.php';
   <div class="row mb-4">
     <div class="col d-flex justify-content-center">
       <!-- Checkbox -->
-      <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
-        <label class="form-check-label" for="form1Example3"> Remember me </label>
-      </div>
+     
     </div>
 
   </div>
 
   <!-- Submit button -->
-  <button type="submit" name="btn" class="btn btn-primary btn-block" style="background-color: black; color:white; border-color:black; width: 10%; margin-left: 45%">Sign in</button>
+  <button type="submit" name="btn" class="btn btn-primary " style="margin-right: 45%;background-color: black; color:white; border-color:black; width: 10%; margin-left: 45%">Login</button>
 </form>
 
-<?php
-
-$user = filter_input(INPUT_POST, 'user');
-$pass = filter_input(INPUT_POST, 'pass');
-$bt = filter_input(INPUT_POST, 'btn');
-
-$adm = $adminController->login($user, $pass);
-
-if(isset($bt)){
-    if($adm){
-        
-        header('Location: admin/admin.php');
-        exit();
-    }else{
-        echo '<script> alert("Senha Invalida");</script>';
-    }
-}
-
-
-include_once 'footer.php';
-?>

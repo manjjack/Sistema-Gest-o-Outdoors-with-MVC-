@@ -1,6 +1,5 @@
 <?php
 
-include_once '../model/Cliente';
 
 interface ICliente {
     

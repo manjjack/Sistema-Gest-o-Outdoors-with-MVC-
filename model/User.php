@@ -1,6 +1,6 @@
 <?php
 
-abstract class User{
+class User{
     
     private $id;
     private $username;
@@ -12,9 +12,10 @@ abstract class User{
     private $municipio;    
     private $comuna;
     private $telefone;
+    private $perfil;
     
-    
-    public function __construct($username, $password, $nome , $morada, $email, $provincia, $municipio, $comuna, $telefone) {
+    public function __construct($username = null, $password = null, $nome=null , $morada= null
+            , $email = null, $provincia= null, $municipio= null, $comuna= null, $telefone=null, $perfil=null) {
         
         $this->username = $username;
         $this->password = $password;
@@ -25,6 +26,7 @@ abstract class User{
         $this->municipio = $municipio;
         $this->comuna = $comuna;
         $this->telefone = $telefone;
+        $this->perfil = $perfil;
     }
     public function getId(){
         return $this->id;
@@ -106,6 +108,13 @@ abstract class User{
         $this->telefone = $tel;
     }
     
+    public function getPerfil() {
+        return $this->perfil;
+    }
+    
+    public function setPerfil($perfil) {
+        $this->perfil= $perfil;
+    }
 
 }
 

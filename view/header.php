@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,13 +32,10 @@
                         <a class="nav-link" href="index.php">Home <span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Destaques</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="gestor/outdoors.php">Preços</a>
+                        <a class="nav-link" href="outdoors.php">Preços</a>
                     </li>
                 </ul>
-                
+                   
                 <div class="dropdown " id="login">
                     <div class="d-flex align-items-right text-right">
                      <button type="button" class="btn btn-link px-3 me-2" style="color:black">
@@ -50,6 +48,6 @@
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> 
         </nav> 
 

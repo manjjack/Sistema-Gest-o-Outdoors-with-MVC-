@@ -1,6 +1,6 @@
 <?php
-include_once '../../dbconfig/Conexao.php';
-include_once '../../model/Outdoor.php';
+include_once '../dbconfig/Conexao.php';
+include_once '../model/Outdoor.php';
 
 class OutdoorRepository{
     
@@ -26,12 +26,12 @@ class OutdoorRepository{
                 . ' WHERE id = ?';
 
         $stmt = Conexao::getConn()->prepare($sql);
-        $stmt->bindValue(1, $outdoor->getOutdoor());
+        $stmt->bindValue(1, $outdoor->getTipoOutdoor());
         $stmt->bindValue(2, $outdoor->getPreco());
         $stmt->bindValue(3, $outdoor->getComuna());
         $stmt->bindValue(4, $outdoor->getEstado());
         $stmt->bindValue(5, $outdoor->getImagem());
-        $tmt->bindValue(6, $outdoor->getId());
+        $stmt->bindValue(6, $outdoor->getId());
         $stmt->execute();
     }
 

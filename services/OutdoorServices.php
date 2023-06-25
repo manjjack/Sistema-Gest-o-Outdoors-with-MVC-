@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../repositories/OutdoorRepository.php';
+require_once '../repositories/OutdoorRepository.php';
 
 class OutdoorServices {
 
@@ -36,7 +36,7 @@ class OutdoorServices {
 
     public function getById($id) {
         try {
-            return $this->outdoorRepository->getById($id);
+            return $this->outdoorRepository->getOutdoorById($id);
         } catch (Exception $e) {
             echo "An error occurred while:  " . $e->getMessage();
         }
