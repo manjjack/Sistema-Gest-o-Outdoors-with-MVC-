@@ -3,43 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/model/Outdoor.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/gestor/gestor.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/repositories/ICliente.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/repositories/ClienteRepository.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/admin/clientes.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/header.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/form-sign-in.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/repositories/MunicipioRepository.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/repositories/OutdoorRepository.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/repositories/autenticar.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/model/Provincia.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/model/Cliente.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/gestor/header-gestor.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/repositories/ComunaRepository.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/services/AdminServices.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/gestor/form-outdoor.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/repositories/UserRepository.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/services/ClienteServices.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/login/protect.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/admin/admin.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/controllers/OutdoorController.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/model/Municipio.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/controllers/ComunaController.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/dbconfig/Conexao.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/admin/edit-gestor.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/header-preco.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/login/login.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/model/Comuna.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/controllers/UserController.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/model/User.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/admin/header-adm.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/admin/form-gestor.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/login/logout.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/repositories/ProvinciaRepository.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/services/OutdoorServices.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/gestor/outdoors.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/controllers/ClienteController.php</file>
+            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/scripts/custom/form.js</file>
         </group>
     </open-files>
 </project-private>
