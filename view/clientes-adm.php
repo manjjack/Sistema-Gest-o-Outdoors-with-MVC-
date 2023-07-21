@@ -6,7 +6,7 @@ include_once '../model/Cliente.php';
 include_once '../repositories/ClienteRepository.php';
 ?>
 
-<h5 style="margin-top: 20px;margin-left: 20px"> Clientes</h5>
+<h5 style="margin-top: 20px; margin-left: 20px"> Clientes</h5>
 
 
 <html lang="en">
@@ -37,8 +37,8 @@ include_once '../repositories/ClienteRepository.php';
   </style>
 
   <div class="container>
-    <br>
-    <br>
+    <br/>
+    <br/>
              
     <button type=" button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary"></button>
     <table class="table">
@@ -68,8 +68,8 @@ include_once '../repositories/ClienteRepository.php';
 
         <?php
 
-
-        foreach ($clienteRepository->getAllCliente() as $gest):
+        
+        foreach ($clienteController->getAllClientes() as $gest):
           echo "<tr>";
           echo "<td>" . $gest->getId() . "</td>";
           echo "<td>" . $gest->getUsername() . "</td>";
@@ -115,7 +115,7 @@ include_once '../repositories/ClienteRepository.php';
   <?php
   $btn = filter_input(INPUT_POST, 'idGest');
   if (isset($btn)) {
-    $clienteRepository->deleteCliente($_POST['valorId']);
+    $clienteController->deleteCliente($_POST['valorId']);
     echo "<meta http-equiv=\"refresh\" content=\"0;\">";
   }
 

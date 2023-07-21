@@ -3,7 +3,6 @@ include_once '../dbconfig/Conexao.php';
 
 include_once '../model/User.php';
 
-include_once 'IUser.php';
 
 class UserRepository {
     
@@ -155,7 +154,7 @@ class UserRepository {
         municipio = ?, comuna = ?, telefone = ?, perfil = ? WHERE id = ?';
         
                 $stmt = Conexao::getConn()->prepare($sql);
-		        $stmt->bindValue(1, $gest->getUsername());
+		$stmt->bindValue(1, $gest->getUsername());
                 $stmt->bindValue(2,$gest->getPassword());
                 $stmt->bindValue(3, $gest->getNome());
                 $stmt->bindValue(4, $gest->getMorada());
@@ -169,4 +168,15 @@ class UserRepository {
                 
 		        $stmt->execute();
     }
+
+    public function updatePassword($id, $newPassword) {
+        $sql = 'UPDATE user SET password = ?, senha_alterada = 1 WHERE id = ?';
+
+        $stmt = Conexao::getConn()->prepare($sql);
+        $stmt->bindValue(1, $newPassword);
+        $stmt->bindValue(2, $id);
+        $stmt->execute();
+    }
+
+
 }

@@ -40,7 +40,7 @@ $gestController = new UserRepository();
                                 echo '<option > ----Selecione----  </option>';
                                 foreach ($comunaRepository->getAllComuna() as $com) {
                                     echo '<option value = "' . $com->getId() . '">' . $com->getComuna() . ' , ' . $comunaRepository->getNomeMunicipio($comunaRepository->getFk($com->getId())) . ' , ' . $comunaRepository->getNomeProvinciaByComuna($comunaRepository->getFk($com->getId())) . '</option>';
-                                
+
                                 }
 
 
@@ -57,17 +57,20 @@ $gestController = new UserRepository();
                         </div>
                         <div class="form-group col-sm-6 flex-column d-flex"> <label
                                 class="form-control-label px-3">Telemovel<span class="text-danger"> *</span></label>
-                            <input type="tel" id="tel" name="tel" placeholder="" onblur="validate(5)" required> </div>
+                            <input type="tel" id="tel" name="tel" placeholder="" onblur="validate(5)" required>
+                        </div>
                     </div>
                     <div class="row justify-content-between text-left">
                         <div class="form-group col-sm-6 flex-column d-flex"> <label
                                 class="form-control-label px-3">Provincia<span class="text-danger"> *</span></label>
                             <input type="text" id="provincia" name="provincia" placeholder="" onblur="validate(5)"
-                                  disabled style="background-color: gainsboro"> </div>
+                                disabled style="background-color: gainsboro">
+                        </div>
                         <div class="form-group col-sm-6 flex-column d-flex"> <label
                                 class="form-control-label px-3">Municipio<span class="text-danger"> *</span></label>
                             <input type="text" id="municipio" name="municipio" placeholder="" onblur="validate(5)"
-                            disabled style="background-color: gainsboro"> </div>
+                                disabled style="background-color: gainsboro">
+                        </div>
                     </div>
                     <div class="row justify-content-between text-left">
 
@@ -87,7 +90,8 @@ $gestController = new UserRepository();
 
                         <div class="form-group col-sm-6 flex-column d-flex"> <label
                                 class="form-control-label px-3">Password<span class="text-danger"> *</span></label>
-                            <input type="password" id="senha1" name="senha1" placeholder="" onblur="" required> </div>
+                            <input type="password" id="senha1" name="senha1" placeholder="" onblur="" required>
+                        </div>
                         <div class="form-group col-sm-6 flex-column d-flex"> <label
                                 class="form-control-label px-3">Confirmar password<span class="text-danger">
                                     *</span></label> <input type="password" id="senha2" name="senha2" placeholder=""
@@ -98,7 +102,7 @@ $gestController = new UserRepository();
                                 class="form-control-label px-3">Perfil<span class="text-danger"> *</span></label>
 
                             <select name="perfil">
-                                <option value="Admin">Admin </option>
+                             <!--   <option value="Admin">Admin </option> -->
                                 <option value="Gestor">Gestor</option>
                             </select>
 
@@ -148,6 +152,7 @@ if (isset($btn)) {
     $gestor->setComuna($comuna);
     $gestor->setTelefone($tel);
     $gestor->setPerfil($perfil);
+    $gestor->setSenhaAlterada(0);
     $gestController->registarUser($gestor);
     echo "<meta http-equiv=\"refresh\" content=\"0;URL=http://localhost/Sistema-Outdoors/view/admin.php\">";
     // echo "<meta http-equiv=\"refresh\" content=\"0;\">";

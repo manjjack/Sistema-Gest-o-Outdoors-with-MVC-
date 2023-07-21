@@ -52,7 +52,7 @@ class Outdoor{
     }
 
     public function getEstado() {
-        return $this->comuna;
+        return $this->estado;
     }
 
      public function setEstado($estado) {

@@ -13,9 +13,11 @@ class User{
     private $comuna;
     private $telefone;
     private $perfil;
+    private $senha_alterada;
     
     public function __construct($username = null, $password = null, $nome=null , $morada= null
-            , $email = null, $provincia= null, $municipio= null, $comuna= null, $telefone=null, $perfil=null) {
+            , $email = null, $provincia= null, $municipio= null, $comuna= null, $telefone=null, $perfil=null,
+            $senha_alterada = null) {
         
         $this->username = $username;
         $this->password = $password;
@@ -28,10 +30,19 @@ class User{
         $this->telefone = $telefone;
         $this->perfil = $perfil;
     }
-    public function getId(){
+   
+    public function getSenhaAlterada() {
+        return $this->senha_alterada;
+    }
+
+    public function setSenhaAlterada($senha) {
+        $this->senha_alterada = $senha;
+    }
+
+    public function getId() {
         return $this->id;
     }
-    
+
     public function setId($id) {
         $this->id = $id;
     }

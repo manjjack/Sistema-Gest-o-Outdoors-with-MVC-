@@ -31,8 +31,8 @@ $comuna = new ComunaRepository();
     </style>
 
     <div class="container>
-         <br>
-         <br>
+         <br/>
+         <br/>
 
          <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary" ></button>
     <table class="table" >

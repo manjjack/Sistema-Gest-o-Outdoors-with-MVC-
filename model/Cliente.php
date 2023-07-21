@@ -8,14 +8,18 @@ class Cliente extends User{
         private $actividadeEmpresa;
         private $nacionalidade;
         private $status;
-        public function __construct($username = null, $password = null, $nome=null , $morada=null, $email=null, $provincia=null, $municipio=null, $comuna=null, $telefone=null, $tipoCliente = null, $actividadeEmpresa = null, $nacionalidade = null, $status = null) {
-        parent::__construct( $username, $password, $nome , $morada, $email, $provincia, $municipio, $comuna, $telefone);
+        
+        
+        public function __construct($username = null, $password = null, $nome=null , $morada=null, $email=null, $provincia=null, $municipio=null, $comuna=null, $telefone=null, $tipoCliente = null, $actividadeEmpresa = null, $nacionalidade = null, $status = null, $senha_alterada = null) {
+        parent::__construct( $username, $password, $nome , $morada, $email, $provincia, $municipio, $comuna, $telefone, $senha_alterada);
        
         $this->tipoCliente = $tipoCliente;
         $this->actividadeEmpresa = $actividadeEmpresa;
         $this->nacionalidade = $nacionalidade;
         $this->status = $status;
     }
+    
+ 
 
     public function getId(){
         return $this->id;

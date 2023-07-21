@@ -1,8 +1,6 @@
 <?php
 
 include_once '../services/UserServices.php';
-include_once '../model/User.php';
-include_once '../repositories/UserRepository.php';
 
 class UserController {
 
@@ -16,6 +14,11 @@ class UserController {
         $this->gestorService->login($username, $password);
     }
     
+    public function updatePassword($id, $newPass) {
+        $this->gestorService->updatePassword($id, $newPass);
+    }
+
+
     public function addGestor(User $gest) {
         $this->gestorService->registar($gest);
     }

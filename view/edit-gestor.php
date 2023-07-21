@@ -8,34 +8,37 @@ $comunaRepository = new ComunaRepository;
 ?>
 <!doctype html>
 <html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link href="../content/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link href="../content/bootstrap/bootstrap.min.css" rel="stylesheet" >
-        <link href="../content/css/form.css" rel="stylesheet" >
-        <title></title>
-    </head>
-    <body>
-        <style>
-            .container{
-                width: 70%;
-            }
-        </style>
-        <div class="container">
-            <br>
-            <br>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="../content/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="../content/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../content/css/form.css" rel="stylesheet">
+    <title></title>
+</head>
+
+<body>
+    <style>
+        .container {
+            width: 70%;
+        }
+    </style>
+    <div class="container">
+        <br>
+        <br>
 
 
-            <?php
-            //$id = $_GET['id'];
-            
-            $cod = filter_input(INPUT_GET, 'id');
-            if (isset($cod)) {
-                $gest = $gestController->getGestorById($cod);
-                echo'
+        <?php
+        //$id = $_GET['id'];
+        
+        $cod = filter_input(INPUT_GET, 'id');
+        if (isset($cod)) {
+            $gest = $gestController->getGestorById($cod);
+            echo '
       <div class="container">
       <form method="POST" >
    
@@ -81,41 +84,42 @@ $comunaRepository = new ComunaRepository;
               <a href="admin.php" class="btn btn-outline-secondary">Voltar</a>
         </form> 
         </div>';
-            }
+        }
 
-            $nome = filter_input(INPUT_POST, 'nome');
-            $user = filter_input(INPUT_POST, 'user');
-            $email = filter_input(INPUT_POST, 'email');
-            $provincia = filter_input(INPUT_POST, 'provincia');
-           // $provincia = $comunaRepository->getNomeProvinciaByComuna($comunaRepository->getFk($com->getId()));
-            $municipio = filter_input(INPUT_POST, 'municipio');
-           // $municipio = $comunaRepository->getNomeMunicipio($comunaRepository->getFk($com->getId()));
-            $comuna = filter_input(INPUT_POST, 'comunas');
-            $tel = filter_input(INPUT_POST, 'tel');
-            $morada = filter_input(INPUT_POST, 'morada');
-            $senha = filter_input(INPUT_POST, 'senha1');
-            $perfil = filter_input(INPUT_POST, 'perfil');
-            $btn = filter_input(INPUT_POST, 'editar');
-            
+        $nome = filter_input(INPUT_POST, 'nome');
+        $user = filter_input(INPUT_POST, 'user');
+        $email = filter_input(INPUT_POST, 'email');
+        $provincia = filter_input(INPUT_POST, 'provincia');
+        // $provincia = $comunaRepository->getNomeProvinciaByComuna($comunaRepository->getFk($com->getId()));
+        $municipio = filter_input(INPUT_POST, 'municipio');
+        // $municipio = $comunaRepository->getNomeMunicipio($comunaRepository->getFk($com->getId()));
+        $comuna = filter_input(INPUT_POST, 'comunas');
+        $tel = filter_input(INPUT_POST, 'tel');
+        $morada = filter_input(INPUT_POST, 'morada');
+        $senha = filter_input(INPUT_POST, 'senha1');
+        $perfil = filter_input(INPUT_POST, 'perfil');
+        $btn = filter_input(INPUT_POST, 'editar');
 
-            if (isset($btn)) {
 
-                $gesto = new User();
-                $gesto->setUsername($user);
-                $gesto->setNome($nome);
-                $gesto->setPassword($senha);
-                $gesto->setMorada($morada);
-                $gesto->setProvincia($provincia);
-                $gesto->setMunicipio($municipio);
-                $gesto->setComuna($comuna);
-                $gesto->setTelefone($tel);
-                $gesto->setEmail($email);
+        if (isset($btn)) {
 
-                $gestRepository->updateUser($gesto);
-                echo "<meta http-equiv=\"refresh\" content=\"0;URL=http://localhost/Sistema-Outdoors/view/admin.php\">";
-            }
-            ?>
-        </div>
+            $gesto = new User();
+            $gesto->setUsername($user);
+            $gesto->setNome($nome);
+            $gesto->setPassword($senha);
+            $gesto->setMorada($morada);
+            $gesto->setProvincia($provincia);
+            $gesto->setMunicipio($municipio);
+            $gesto->setComuna($comuna);
+            $gesto->setTelefone($tel);
+            $gesto->setEmail($email);
 
-    </body>
+            $gestRepository->updateUser($gesto);
+            echo "<meta http-equiv=\"refresh\" content=\"0;URL=http://localhost/Sistema-Outdoors/view/admin.php\">";
+        }
+        ?>
+    </div>
+
+</body>
+
 </html>

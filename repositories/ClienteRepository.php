@@ -211,5 +211,21 @@ class ClienteRepository implements ICliente
 
         $stmt->execute();
     }
+     
+    public function verificarStatus($id) {
+        $sql = 'SELECT status FROM cliente WHERE id = ?';
+        $stmt = Conexao::getConn()->prepare($sql);
+        $stmt->bindValue(1, $id);
+
+        $stmt->execute();
+
+        $resultado = $stmt->fetch(); // Obtém a linha de resultado da consulta
+        // Verifica se a consulta retornou um resultado válido e se o status é "desativado"
+        if ($resultado && $resultado['status'] === 'ativo') {
+            return true; // Retorna true se o status for "desativado"
+        }
+
+        return false; // Retorna false caso contrário
+    }
 
 }

@@ -3,7 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/scripts/custom/form.js</file>
+            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/repositories/ComunaRepository.php</file>
+            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/model/Comuna.php</file>
+            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/controllers/AluguerController.php</file>
+            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/header-gestor.php</file>
+            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/clientes-adm.php</file>
+            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/header.php</file>
+            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/view/form-sign-in.php</file>
+            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/scripts/custom/gerarCampos.js</file>
+            <file>file:/C:/xampp/htdocs/Sistema-Outdoors/controllers/arquivoController.php</file>
         </group>
     </open-files>
 </project-private>

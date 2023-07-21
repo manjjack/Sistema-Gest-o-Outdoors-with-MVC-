@@ -16,7 +16,7 @@ class ClienteController {
         $this->clienteService->registar($clinte);
     }
 
-    public function updateStudent(Cliente $cliente) {
+    public function updateCliente(Cliente $cliente) {
         $this->clienteService->update($cliente);
     }
 
@@ -28,11 +28,11 @@ class ClienteController {
         return $this->clienteService->getById($id);
     }
 
-    public function getStudentByName($nome) {
+    public function getClienteByName($nome) {
         return $this->clienteService->getByName($nome);
     }
 
-    public function deleteStudent($id) {
+    public function deleteCliente($id) {
         $this->clienteService->delete($id);
     }
 }
