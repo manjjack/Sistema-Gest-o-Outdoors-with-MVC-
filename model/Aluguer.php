@@ -7,12 +7,20 @@ class Aluguer{
         private $dataInicio;
         private $dataFim;
         private $precoFinal;
-        public function __construct($idOutdoor = null, $idCliente = null, $dataFim = null, $precoFinal = null) {
+        private $imagem;
+        private $estado;
+        private $comuna;
+
+
+        public function __construct($idOutdoor = null, $idCliente = null,$dataInicio=null, $dataFim = null, $precoFinal = null, $comuna = null, $estado =null,$imagem = null) {
         
         $this->idOutdoor = $idOutdoor;
         $this->idCliente= $idCliente;
         $this->dataFim = $dataFim;
-        $this->dataInicio = date("d/m/Y");
+        $this->comuna = $comuna;
+        $this->dataInicio = $dataInicio;
+        $this->imagem = $imagem;
+        $this->estado = $estado;
     }
     
     public function getPrecoFinal() {
@@ -47,23 +55,43 @@ class Aluguer{
       }
     
       // Setter para $dataInicio
-      public function setDataInicio() {
+    public function setDataInicio($dataInicio) {
 
-        $this->dataInicio = date("d/m/Y");
-      }
-    
-      // Getter para $dataFim
-      public function getDataFim() {
+        $this->dataInicio = $dataInicio;
+    }
+
+    public function getImagem() {
+        return $this->imagem;
+    }
+
+    public function setImagem($imagem) {
+        $this->imagem = $imagem;
+    }
+
+    // Getter para $dataFim
+    public function getDataFim() {
         return $this->dataFim;
-      }
-    
-      // Setter para $dataFim
-      public function setDataFim($mes) {
-        $dataAtual = new DateTime(); // Obtém a data atual
-        $dataFim = clone $dataAtual;
-        $dataFim->modify('+' . intval($mes) . ' months'); // Certifica-se de que $mes seja um valor inteiro
-        $this->dataFim = $dataFim->format('d-m-Y'); // Define a propriedade dataFim como uma string formatada
     }
     
+    public function setDataFim($dt) {
+        $this->dataFim = $dt;
+    }
+
+    public function getEstado() {
+        return $this->estado;
+    }
+
+    // Setter para a propriedade $estado
+    public function setComuna($novoEstado) {
+        $this->comuna = $novoEstado;
+    }
+
+      public function getComuna() {
+        return $this->comuna;
+    }
+
+    public function setEstado($novoEstado) {
+        $this->estado = $novoEstado;
+    }
     
 }

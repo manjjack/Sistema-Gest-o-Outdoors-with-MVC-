@@ -1,5 +1,5 @@
 <?php
-include_once 'header.php';
+include_once 'header-gestor.php';
 include_once '../controllers/ComunaController.php';
 include_once '../repositories/ComunaRepository.php';
 include_once '../model/Comuna.php';
@@ -7,7 +7,6 @@ include_once '../repositories/ClienteRepository.php';
 include_once '../services/EmailService.php';
 
 $clienteRepository = new ClienteRepository();
-$mail = new EmailService();
 ?>
 
 <header>
@@ -160,7 +159,7 @@ $mail = new EmailService();
                     </div>
                     <div class="row justify-content-center">
                         <div class="form-group col-sm-6"> <button type="submit" name="btn"
-                                                                  class=" btn-secondary">Submit</button> </div>
+                                                                  class=" btn-secondary">Editar</button> </div>
                         <input type="hidden" name="form" value="1" />
                     </div>
                 </form>
@@ -175,6 +174,7 @@ $mail = new EmailService();
 <script src="../scripts/custom/atividade.js"></script>
 
 <?php
+$cod = filter_input(INPUT_GET, 'id');
 $nome = filter_input(INPUT_POST, 'nomeEmpresa');
 $user = filter_input(INPUT_POST, 'user');
 $email = filter_input(INPUT_POST, 'email');
@@ -209,8 +209,8 @@ if (isset($btn)) {
     $gestor->setNacionalidade($nac);
     $gestor->setTipoCliente($tipoCliente);
     $gestor->setStatus("desativado");
-    $clienteRepository->registarCliente($gestor);
-    $mail->mandarEmail('20200313@isptec.co.ao',"Preceder para ativar a Conta","Novo User");
+    $clienteRepository->updateCliente($cod,$gestor);
+    
     echo "<meta http-equiv=\"refresh\" content=\"0;URL=http://localhost/Sistema-Outdoors/view/index.php\">";
     // echo "<meta http-equiv=\"refresh\" content=\"0;\">";
 }

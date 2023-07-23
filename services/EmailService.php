@@ -15,20 +15,21 @@ class EmailService
 
     public function mandarEmail($email, $msg, $til)
     {
-        $mail = new PHPMailer;
+        $mail = new PHPMailer(true);
 
         $mail->isSMTP();
-        $mail->Host = $mail;
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = $email; // Insira seu e-mail do Gmail
-        $mail->Password = $this->pass; // Insira sua senha do Gmail
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
+        $mail->Username = 'inteligentejackson@gmail.com'; // Insira seu e-mail do Gmail
+        $mail->Password = 'etqobesusuhkmrdc'; // Insira sua senha do Gmail
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
 
         // Configurações do e-mail
-        $mail->setFrom('inteligentejackson@gmail.com', 'Jackson Junior'); // E-mail do remetente
-        $mail->addAddress($email, 'Nome do Destinatário');
-
+        $mail->setFrom('inteligentejackson@gmail.com'); // E-mail do remetente
+        $mail->addAddress($email);
+        
+        $mail->isHTML(true);
         $mail->Subject = $til;
         $mail->Body = $msg;
         $mail->send();

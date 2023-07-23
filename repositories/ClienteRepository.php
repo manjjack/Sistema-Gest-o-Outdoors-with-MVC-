@@ -41,38 +41,36 @@ class ClienteRepository implements ICliente
     }
 
 
-    public function updateCliente(Cliente $cliente)
-    {
+public function updateCliente($id, Cliente $cliente)
+{
+    $sql = 'UPDATE user SET username = ?, password = ?, nome = ?, morada = ?, email = ?, provincia = ?, municipio = ?, comuna = ?, telefone = ?, perfil = ? WHERE id = ?';
 
-        $sql = 'UPDATE user SET username = ?, password = ?, nome = ?, morada = ?, email = ? provincia = ?, municipio = ?,
-         comuna = ?, telefone = ?, perfil = ? where id = ?';
-        $stmt = Conexao::getConn()->prepare($sql);
-        $stmt->bindValue(1, $cliente->getUsername());
-        $stmt->bindValue(2, $cliente->getPassword());
-        $stmt->bindValue(3, $cliente->getNome());
-        $stmt->bindValue(4, $cliente->getMorada());
-        $stmt->bindValue(5, $cliente->getEmail());
-        $stmt->bindValue(6, $cliente->getProvincia());
-        $stmt->bindValue(7, $cliente->getMunicipio());
-        $stmt->bindValue(8, $cliente->getComuna());
-        $stmt->bindValue(9, $cliente->getTelefone());
-        $stmt->bindValue(10, $cliente->getPerfil());
+    $stmt = Conexao::getConn()->prepare($sql);
+    $stmt->bindValue(1, $cliente->getUsername());
+    $stmt->bindValue(2, $cliente->getPassword());
+    $stmt->bindValue(3, $cliente->getNome());
+    $stmt->bindValue(4, $cliente->getMorada());
+    $stmt->bindValue(5, $cliente->getEmail());
+    $stmt->bindValue(6, $cliente->getProvincia());
+    $stmt->bindValue(7, $cliente->getMunicipio());
+    $stmt->bindValue(8, $cliente->getComuna());
+    $stmt->bindValue(9, $cliente->getTelefone());
+    $stmt->bindValue(10, $cliente->getPerfil());
+    $stmt->bindValue(11, $id);
 
-        $stmt->execute();
+    $stmt->execute();
 
+    $sql1 = "UPDATE cliente SET tipoCliente = ?, actividade = ?, nacionalidade = ? WHERE id = ?";
+    $stmt1 = Conexao::getConn()->prepare($sql1);
 
-        $sql1 = 'UPDATE cliente SET tipoCliente = ?, actividade = ?, nacionalidade = ?, status=?
-                 where id = ?';
-        $stmt1 = Conexao::getConn()->prepare($sql1);
+    $stmt1->bindValue(1, $cliente->getTipoCliente());
+    $stmt1->bindValue(2, $cliente->getActividadeEmpresa());
+    $stmt1->bindValue(3, $cliente->getNacionalidade());
+    $stmt1->bindValue(4, $id);
 
-        $stmt1->bindValue(1, $cliente->getTipoCliente());
-        $stmt1->bindValue(2, $cliente->getActividadeEmpresa());
-        $stmt1->bindValue(3, $cliente->getNacionalidade());
-        $stmt1->bindValue(4, $cliente->getStatus());
+    $stmt1->execute();
+}
 
-
-        $stmt1->execute();
-    }
 
     public function deleteCliente($id)
     {

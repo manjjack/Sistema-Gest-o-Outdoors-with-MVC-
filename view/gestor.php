@@ -92,7 +92,7 @@ foreach ($outdoorController->getAllOutdoor() as $outd):
     echo "<td>" . $outd->getEstado() . "</td>";
     echo "<td><img width='30' height='20' src='../content/images/images/a" . $outd->getImagem() . "'></td>";
 
-    echo '<td><a href="edit-gestor.php?id=' . $outd->getId() . '" class=" btn-outline-secondary">Editar</a></td>';
+    echo '<td><a href="edit-outdoor.php?id=' . $outd->getId() . '" class=" btn-outline-secondary">Editar</a></td>';
 
     echo"<form method='post'>";
 

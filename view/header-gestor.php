@@ -73,8 +73,12 @@ include_once '../controllers/Protect.php';
                 </div> 
                 </div>';
                 } else if ($_SESSION['perfil'] == "Gestor") {
-                    echo ' <div class="dropdown " id="login" style="margin-left: 70%">
+                    echo ' <div class="dropdown " id="login" style="margin-left: 55%">
                  <div class="d-flex align-items-right text-right">
+                     <button type="button" class="btn btn-primary me-3" id="btn-login">
+ 
+                         <a href="solicitacoes.php" style="color:white"> Solicitacoes </a>
+                     </button>
                      <button type="button" class="btn btn-link px-3 me-2" style="color:black; background-color:white;">
  
                          <a href="../controllers/Logout.php" style="color:black; "> Log Out </a>

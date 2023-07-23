@@ -49,7 +49,7 @@ $comuna = new ComunaRepository();
                 <th scope="col">Comuna</th>
                 <th scope="col">telefone</th>
                 <th scope="col">Conta</th>
-                <th scope="col">Editar</th>
+                
                 <th scope="col">Excluir</th>
 
             </tr>
@@ -70,8 +70,7 @@ $comuna = new ComunaRepository();
                 echo "<td>" . $comuna->getNomeComuna($gest->getComuna()) . "</td>";
                 echo "<td>" . $gest->getTelefone() . "</td>";
                 echo "<td>" . $gest->getPerfil() . "</td>";
-                echo '<td><a href="edit-gestor.php?id=' . $gest->getId() . '" class=" btn-outline-secondary">Editar</a></td>';
-
+                
                 echo"<form method='post'>";
 
                 echo "<input type='text' hidden value=" . $gest->getId() . " name='valorId' class='form-control' id='valorId'>";

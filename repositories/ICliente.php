@@ -4,7 +4,7 @@
 interface ICliente {
     
     public function registarCliente(Cliente $cliente);
-    public function updateCliente(Cliente $cliente);
+    public function updateCliente($id, Cliente $cliente);
     public function getAllCliente();
     public function getClienteById($id);
     public function getClienteByName($name);

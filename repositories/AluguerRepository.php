@@ -7,7 +7,7 @@ class AluguerRepository
 
     public function registarAluguer(Aluguer $al)
     {
-        $sql = 'INSERT INTO aluguer (idOutdoor, idCliente, dataInicio, dataFim,precoFinal) VALUES (?,?,?,?,?)';
+        $sql = 'INSERT INTO aluguer (idOutdoor, idCliente, dataInicio, dataFim,precoFinal,comuna,imagem,estado) VALUES (?,?,?,?,?,?,?,?)';
 
         $stmt = Conexao::getConn()->prepare($sql);
         // $stmt = $conn->prepare($sql);
@@ -16,29 +16,18 @@ class AluguerRepository
         $stmt->bindValue(3, $al->getDataInicio());
         $stmt->bindValue(4, $al->getDataFim());
         $stmt->bindValue(5, $al->getPrecoFinal());
-        $conn = Conexao::getConn();
-
-        $stmt->execute();
-
-    }
-
-
-    public function updateAluguer(Aluguer $al)
-    {
-
-        $sql = 'UPDATE aluguer SET idOutdoor = ?,idCliente=?, dataInico = ?,
-        dataFim = ?, precoFial = ?, where idOutdoor = ?';
-        $stmt = Conexao::getConn()->prepare($sql);
-        $stmt->bindValue(1, $al->getIdOutdoor());
-        $stmt->bindValue(2, $al->getIdCliente());
-        $stmt->bindValue(3, $al->getDataInicio());
-        $stmt->bindValue(4, $al->getDataFim());
-        $stmt->bindValue(5, $al->getPrecoFinal());
-        $stmt->execute();
-
-
+        $stmt->bindValue(6, $al->getComuna());
+        $stmt->bindValue(7, $al->getImagem());
+        $stmt->bindValue(8, $al->getEstado());
         
+        
+
+        $stmt->execute();
+
     }
+
+
+   
 
     public function deleteAluguer($id)
     {
@@ -73,9 +62,10 @@ class AluguerRepository
 
             $objecto->setIdOutdoor($resultado["idOutdoor"]);
             $objecto->setIdCliente($resultado["idCliente"]);
-           // $objecto->setDataInicio($resultado[]);
+            $objecto->setDataInicio($resultado["dataInicio"]);
             $objecto->setDataFim($resultado["dataFim"]);
             $objecto->setDataFim($resultado["precoFinal"]);
+            $objecto->setComuna($resultado["comuna"]);
             $result[] = $objecto;
         }
 
@@ -264,10 +254,12 @@ class AluguerRepository
 
         $objecto->setIdOutdoor($resultado["idOutdoor"]);
         $objecto->setIdCliente($resultado["idCliente"]);
-        // $objecto->setDataInicio($resultado[]);
+        $objecto->setDataInicio($resultado["dataInicio"]);
         $objecto->setDataFim($resultado["dataFim"]);
         $objecto->setPrecoFinal($resultado["precoFinal"]);
-
+        $objecto->setComuna($resultado["comuna"]);
+        $objecto->setImagem($resultado["imagem"]);
+        $objecto->setEstado($resultado["estado"]);
         $result[] = $objecto;
     }
 

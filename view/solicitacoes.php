@@ -34,22 +34,19 @@ include_once '../model/Aluguer.php';
              <br/>
 
              <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary" ></button>
-         
-        <br/>
         <table class="table" >
             <thead>
                 <tr>
                     <th scope="col">IdOutdoor</th>
                     <th scope="col">IdCliente</th>
-
+                    
                     <th scope="col">Data Inicio</th>
                     <th scope="col">Data Fim</th>
                     <th scope="col">Valor</th>
                     <th scope="col">Imagem</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Comuna</th>
-
-                    <th scope="col">Pagamento</th>
+                    <th scope="col">Avalidar</th>
                     <th scope="col">Excluir</th>
 
                 </tr>
@@ -59,9 +56,8 @@ include_once '../model/Aluguer.php';
                 <?php
                 $idC = $aluguerRepository->getIdByUser($_SESSION['username']);
                 foreach ($aluguerRepository->getAllAluguerPorCliente($idC) as $outd):
-
                     echo "<tr>";
-                    echo "<td>" . $outd->getIdOutdoor() . "</td>";
+                    echo "<td>" . $outd->getIdOutdoor() . "</td>"; 
                     echo "<td>" . $outd->getIdCliente() . "</td>";
                     echo "<td>" . $outd->getDataInicio() . "</td>";
                     echo "<td>" . $outd->getDataFim() . "</td>";
@@ -69,14 +65,13 @@ include_once '../model/Aluguer.php';
                     echo "<td><img width='30' height='20' src='../content/images/images/a" . $outd->getImagem() . "'></td>";
                     echo "<td>" . $outd->getEstado() . "</td>";
                     echo "<td>" . $outd->getComuna() . "</td>";
-                    echo '<td><input type="submit" data-bs-toggle="modal"  id="idGest" name="idGest" data-bs-target="#exampleModal1"  class="btn btn-secondary" value="Carregar"></input>';
-
+                    echo '<td><input type="submit" data-bs-toggle="modal"  id="idGest" name="idGest" data-bs-target="#exampleModal1"  class="btn btn-secondary" value="Comprov"></input>';
                     echo"<form method='post'>";
-
-                    echo "<input type='text' hidden value=" . $outd->getIdOutdoor() . " name='valorId' class='form-control' id='valorId'>";
-                    echo '<td><input type="submit" data-bs-toggle="modal"  id="idGest" name="idGest" data-bs-target="#exampleModal1"  class="btn btn-danger" value="Excluir"></input>';
-
                     
+                    echo "<input type='text' hidden value=" . $outd->getIdOutdoor() . " name='valorId' class='form-control' id='valorId'>";
+                    echo '<td><input type="submit" data-bs-toggle="modal"  id="idGest" name="idGest" data-bs-target="#exampleModal1"  class="btn btn-danger" value="Aprovar"></input>';
+
+                    echo'</form>';
                     echo "</tr>";
 
                 endforeach;
@@ -84,13 +79,7 @@ include_once '../model/Aluguer.php';
 
             </tbody>
         </table>
-        <?php
-        
-        
-        
-        echo '<td><a href="edit-cliente.php?id=' . $idC . '" class=" btn-outline-primary">Editar Conta </a></td>';
-       
-        ?>
+
     </div>
 
 

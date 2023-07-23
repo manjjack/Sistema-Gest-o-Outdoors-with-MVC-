@@ -3,10 +3,12 @@ include_once '../controllers/Protect.php';
 include_once 'header-gestor.php';
 include_once '../repositories/ComunaRepository.php';
 include_once '../controllers/UserController.php';
+include_once '../services/EmailService.php';
 include_once '../model/User.php';
 
 $comunaRepository = new ComunaRepository();
 $gestController = new UserRepository();
+$sent = new EmailService();
 ?>
 
 <header>
@@ -154,6 +156,9 @@ if (isset($btn)) {
     $gestor->setPerfil($perfil);
     $gestor->setSenhaAlterada(0);
     $gestController->registarUser($gestor);
+    $msg = 'username: ' . $user . ' Nome: ' . $nome . ' Email: ' . $email . ' Morada: ' . $morada;
+
+    $sent->mandarEmail($email, $msg, 'Nova Conta Gestor');
     echo "<meta http-equiv=\"refresh\" content=\"0;URL=http://localhost/Sistema-Outdoors/view/admin.php\">";
     // echo "<meta http-equiv=\"refresh\" content=\"0;\">";
 }
