@@ -4,10 +4,12 @@ include_once '../controllers/ComunaController.php';
 include_once '../repositories/ComunaRepository.php';
 include_once '../model/Comuna.php';
 include_once '../repositories/ClienteRepository.php';
+include_once '../controllers/UserController.php';
 include_once '../services/EmailService.php';
 
 $clienteRepository = new ClienteRepository();
 $mail = new EmailService();
+$rev = $gestRepository->getEmailAdm();
 ?>
 
 <header>
@@ -210,7 +212,7 @@ if (isset($btn)) {
     $gestor->setTipoCliente($tipoCliente);
     $gestor->setStatus("desativado");
     $clienteRepository->registarCliente($gestor);
-    $mail->mandarEmail('20200313@isptec.co.ao',"Preceder para ativar a Conta","Novo User");
+    $mail->mandarEmail($rev,"Preceder para ativar a Conta","Novo User");
     echo "<meta http-equiv=\"refresh\" content=\"0;URL=http://localhost/Sistema-Outdoors/view/index.php\">";
     // echo "<meta http-equiv=\"refresh\" content=\"0;\">";
 }

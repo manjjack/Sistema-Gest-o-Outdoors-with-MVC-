@@ -44,6 +44,9 @@ include_once '../controllers/Protect.php';
                     echo ' <li class="nav-item">
                         <a class="nav-link" href="admin.php">Adm/Gestor</a>
                     </li>';
+                    echo ' <li class="nav-item">
+                        <a class="nav-link" href="solicitacoes-adm.php">Solicitacoes</a>
+                    </li>';
                 }
                 ?>
             </ul>
@@ -77,7 +80,8 @@ include_once '../controllers/Protect.php';
                  <div class="d-flex align-items-right text-right">
                      <button type="button" class="btn btn-primary me-3" id="btn-login">
  
-                         <a href="solicitacoes.php" style="color:white"> Solicitacoes </a>
+                        <a href="solicitacoes.php?id=' . $_SESSION['id'] . '" style="color:white"> Solicitacoes </a>
+
                      </button>
                      <button type="button" class="btn btn-link px-3 me-2" style="color:black; background-color:white;">
  

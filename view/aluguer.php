@@ -4,6 +4,7 @@ include_once '../controllers/Protect.php';
 include_once '../controllers/AluguerController.php';
 include_once '../controllers/ComunaController.php';
 include_once '../controllers/OutdoorController.php';
+include_once '../repositories/UserRepository.php';
 include_once '../model/Aluguer.php';
 ?>
 
@@ -128,7 +129,8 @@ $data_fim = filter_input(INPUT_POST, 'data_fim');
 
 
 $dias = calcularDiferencaDatas($data_inicio, $data_fim);
-
+if($dias == 0) $dias = 1;
+$user = new UserRepository();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verificar se um arquivo foi enviado
     if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
@@ -158,28 +160,28 @@ $precoOutdoor = $outdoorRepository->getPrecoById($tipo);
 $estado = $outdoorRepository->getEstadoById($tipo);        
 if (isset($_POST['btn'])) {
    
+    $arrayGestor1 = $user->getIdsGestores();
+    $arrayGestor2 = $aluguerRepository->getAllIdGestorAluguer();
+
+    //$idF = $aluguerController->menorOcorrencia($arrayGestor1);
     $outdoor = new Aluguer();
     $outdoor->setIdOutdoor($tipo);
     $outdoor->setIdCliente($_SESSION['id']);
-    $outdoor->setPrecoFinal($dias*$precoOutdoor);
+    $outdoor->setPrecoFinal($dias * $precoOutdoor);
     $outdoor->setComuna($outdoorRepository->getComunaByOutdoorId($tipo));
     $outdoor->setDataInicio($data_inicio);
     $outdoor->setDataFim($data_fim);
     $outdoor->setEstado("Aguardando Pagamento");
     $outdoor->setImagem($nomeArquivo);
- 
-    if($estado == 0){
+    $outdoor->setIdGestor($arrayGestor1);
+    if ($estado == 0) {
         $aluguerRepository->registarAluguer($outdoor);
         $outdoorRepository->alterarEstadoOutdoor($tipo);
         echo "<meta http-equiv=\"refresh\" content=\"0;URL=http://localhost/Sistema-Outdoors/view/cliente.php\">";
-    //echo "<meta http-equiv=\"refresh\" content=\"0;\">";
-    }else{
+        //echo "<meta http-equiv=\"refresh\" content=\"0;\">";
+    } else {
         echo '<script>alert("Ja Alugado");</script>';
-    }   
-    
-
-    
-    
+    }
 }
 ?>
 

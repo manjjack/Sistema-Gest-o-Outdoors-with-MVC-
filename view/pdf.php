@@ -1,8 +1,6 @@
 <?php
-include_once '../repositories/UserRepository.php';
-$idUser = $_GET['id'];
-$use = new UserRepository();
-$perfil = $use->getPerfilById($idUser);
+include_once '../repositories/AluguerRepository.php';
+$al = new AluguerRepository();
 ?>
 <!DOCTYPE html>
 <html>
@@ -57,45 +55,42 @@ $perfil = $use->getPerfilById($idUser);
         </style>
     </head>
     <body>
-        <?php
-        if ($perfil == "Gestor") {
-            echo '<h1>Bem Vindo, Altere a Senha</h1>';
-            } else {
-            echo '<h1>Altere o E-mail</h1>';
-        }
-        ?>
+      
 
-        <form method="POST">
-            <?php
-            if ($perfil == "Gestor") {
-                echo '<input type="text" placeholder="Digite aqui" id="senha" name="senha" required>';
-            }else {
-                echo '<input type="email" placeholder="Digite aqui" id="email" name="email" required>';
-            }
-            ?>
-
-            <input type="submit" value="Enviar" id="enviar" name="enviar">
-
-
-        </form>
+      <form  method="post" enctype="multipart/form-data">
+    <label for="pdf">Escolha um arquivo PDF:</label>
+    <input type="file" name="pdf" id="pdf">
+    <input type="submit" name="enviar" id="enviar" value="Enviar PDF">
+</form>
     </body>
 </html>
 
 <?php
-//include_once '../../controllers/UserController.php';
+$id = $_GET['id'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Verificar se um arquivo foi enviado
+    if (isset($_FILES['pdf']) && $_FILES['pdf']['error'] === UPLOAD_ERR_OK) {
+        $caminhoTemporario = $_FILES['pdf']['tmp_name']; // Obter o caminho temporário do arquivo
+        $nomeArquivo = $_FILES['pdf']['name']; // Obter o nome do arquivo original
+        // Diretório de destino para salvar os PDFs
+        $diretorioDestino = 'C:\xampp\htdocs\Sistema-Outdoors\content\pdf\a';
 
-$senha = filter_input(INPUT_POST, 'senha');
-$email = filter_input(INPUT_POST, 'email');
+        // Mover o arquivo para o diretório de destino
+        $caminhoPDF = $diretorioDestino . $nomeArquivo;
+        if (move_uploaded_file($caminhoTemporario, $caminhoPDF)) {
+            // Upload do PDF foi bem-sucedido
+        } else {
+            // Erro ao enviar o PDF
+        }
+    }
+}
+
+
 $sub = filter_input(INPUT_POST, 'enviar');
 
 if (isset($sub)) {
-    if ($perfil == "Gestor") {
-        $use->updatePassword($idUser, $senha);
-        header('Location: ../view/gestor.php');
-        exit();
-    } else {
-        $use->updateUserEmailById($idUser, $email);
-        header('Location: ../view/admin.php');
-        exit();
-    }
+    $al->updateAluguerPdf($id, $nomeArquivo);
+    $al->changeEstado($id, 'Pagamento por Validar');
+    header('Location: ../view/cliente.php');
+    exit();
 }

@@ -39,6 +39,46 @@ class AluguerController {
     public function getAllAluguerCliente($id) {
         $this->aluguerService->getClienteID($id);
     }
+    
+
+private function contarOcorrencias($vetor) {
+    $ocorrencias = array();
+    foreach ($vetor as $valor) {
+        // Verifica se o valor é do tipo string ou integer antes de contá-lo
+        if (is_string($valor) || is_integer($valor)) {
+            $valorString = strval($valor); // Converte o valor para string
+            if (isset($ocorrencias[$valorString])) {
+                $ocorrencias[$valorString]++;
+            } else {
+                $ocorrencias[$valorString] = 1;
+            }
+        }
+    }
+    return $ocorrencias;
+}
+
+public function menorOcorrencia($vetor) {
+    // Verifica se o vetor é nulo ou vazio
+    if ($vetor === null || empty($vetor)) {
+        // Retorna um valor padrão ou null quando não há ocorrências
+        return null;
+    }
+
+    // Conta as ocorrências do vetor fornecido
+    $ocorrencias = $this->contarOcorrencias($vetor);
+
+    // Encontra o número com a menor ocorrência
+    $minOcorrencia = min($ocorrencias);
+
+    // Converte o resultado final em inteiro
+    $minOcorrenciaInt = intval($minOcorrencia);
+
+    return $minOcorrenciaInt;
+}
+
+
+
+
 }
 
 $aluguerRepository = new AluguerRepository();

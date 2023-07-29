@@ -84,7 +84,9 @@ $comuna = new ComunaRepository();
 
         </tbody>
     </table>
-
+        <?php
+        echo '<td><a href="ChangeSenha.php?id=' . 2 . '" class=" btn-outline-primary">Editar Conta </a></td>';
+        ?>
 </div>
 
 

@@ -1,8 +1,9 @@
 <?php
 include_once '../repositories/UserRepository.php';
-$idUser = $_GET['id'];
+include_once '../repositories/AluguerRepository.php';
+$idI = $_GET['id'];
 $use = new UserRepository();
-$perfil = $use->getPerfilById($idUser);
+$gest = new AluguerRepository();
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +34,7 @@ $perfil = $use->getPerfilById($idUser);
                 margin: 10px;
             }
             
-             input[type="email"] {
+             input[type="number"] {
                 padding: 10px;
                 border: 2px solid black;
                 border-radius: 5px;
@@ -58,26 +59,29 @@ $perfil = $use->getPerfilById($idUser);
     </head>
     <body>
         <?php
-        if ($perfil == "Gestor") {
-            echo '<h1>Bem Vindo, Altere a Senha</h1>';
-            } else {
-            echo '<h1>Altere o E-mail</h1>';
-        }
+       
+            echo '<h1>Bem Vindo, Altere o Gestor</h1>';
+          
         ?>
 
         <form method="POST">
             <?php
-            if ($perfil == "Gestor") {
-                echo '<input type="text" placeholder="Digite aqui" id="senha" name="senha" required>';
-            }else {
-                echo '<input type="email" placeholder="Digite aqui" id="email" name="email" required>';
-            }
+            echo '<input type="number" placeholder="Digite o numero do Gest" id="senha" name="senha" required>';
             ?>
 
             <input type="submit" value="Enviar" id="enviar" name="enviar">
 
 
         </form>
+        <h1>Lista de gestores</h1>
+        <?php
+// Supondo que você tenha uma instância do objeto AluguerController chamada $aluguerController
+        $idsGestores = $use->getAllGestores();
+
+        foreach ($idsGestores as $idGestor) {
+            echo "ID Gestor: " . $idGestor . " Nome: ". $use->getNomeGestorById($idGestor) . "<br>";
+        }
+        ?>
     </body>
 </html>
 
@@ -85,17 +89,13 @@ $perfil = $use->getPerfilById($idUser);
 //include_once '../../controllers/UserController.php';
 
 $senha = filter_input(INPUT_POST, 'senha');
-$email = filter_input(INPUT_POST, 'email');
+
 $sub = filter_input(INPUT_POST, 'enviar');
 
 if (isset($sub)) {
-    if ($perfil == "Gestor") {
-        $use->updatePassword($idUser, $senha);
+    
+        $gest->alterarIdGestorPorIdOutdoor($idI, $senha);
         header('Location: ../view/gestor.php');
         exit();
-    } else {
-        $use->updateUserEmailById($idUser, $email);
-        header('Location: ../view/admin.php');
-        exit();
-    }
+  
 }

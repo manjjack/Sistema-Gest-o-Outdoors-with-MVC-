@@ -5,6 +5,7 @@ include_once '../controllers/ClienteController.php';
 include_once '../controllers/AluguerController.php';
 include_once '../controllers/OutdoorController.php';
 include_once '../model/Aluguer.php';
+
 ?>
 <h7> Conta <?php echo ' ' . $_SESSION['perfil'] . ' : ' . $_SESSION['username'] ?></h7>
 <h5 style="margin-top: 20px; margin-left: 20px"> Outdoors</h5>
@@ -69,7 +70,14 @@ include_once '../model/Aluguer.php';
                     echo "<td><img width='30' height='20' src='../content/images/images/a" . $outd->getImagem() . "'></td>";
                     echo "<td>" . $outd->getEstado() . "</td>";
                     echo "<td>" . $outd->getComuna() . "</td>";
-                    echo '<td><input type="submit" data-bs-toggle="modal"  id="idGest" name="idGest" data-bs-target="#exampleModal1"  class="btn btn-secondary" value="Carregar"></input>';
+                    if(($aluguerRepository->isPdfNull($outd->getIdOutdoor()) == null)){
+                        echo '<td><a href="C:\xampp\htdocs\Sistema-Outdoors\content\pdf\a' . $aluguerRepository->getNomePdfById($outd->getIdOutdoor()) . '" download>Download do PDF</a></td>';
+
+                        
+                    }else{
+                         echo '<td><a href="pdf.php?id='.$outd->getIdOutdoor().'">Comprv</a></td>';
+                    }
+                    
 
                     echo"<form method='post'>";
 

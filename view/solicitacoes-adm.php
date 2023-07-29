@@ -42,14 +42,14 @@ include_once '../model/Aluguer.php';
                     <th scope="col">IdCliente</th>
 
                     <th scope="col">Data Inicio</th>
-                    <th scope="col">Data Fim</th>
-                    <th scope="col">Valor</th>
+                    
+                    
                     <th scope="col">Imagem</th>
-                    <th scope="col">Estado</th>
+                   
                     <th scope="col">Comuna</th>
 
                     <th scope="col">Pagamento</th>
-                    <th scope="col">Validar</th>
+                    <th scope="col">Mudar Gest</th>
                     
                     <th scope="col">Excluir</th>
                 </tr>
@@ -58,21 +58,21 @@ include_once '../model/Aluguer.php';
 
                 <?php
                 
-                $idNum = $_GET['id'];
+                
                 $idC = $aluguerRepository->getIdByUser($_SESSION['username']);
                 $idOutdoors = $aluguerRepository->getAllIdGestorAluguerPorId($idC);
                 
-                    foreach ($aluguerRepository->getAllAluguerPorGestor($idNum) as $outd) {
+                    foreach ($aluguerRepository->getAllAluguer() as $outd) {
                         echo "<tr>";
 
                         
                         echo "<td>" . $outd->getIdOutdoor() . "</td>";
                         echo "<td>" . $outd->getIdCliente() . "</td>";
                         echo "<td>" . $outd->getDataInicio() . "</td>";
-                        echo "<td>" . $outd->getDataFim() . "</td>";
-                        echo "<td>" . $outd->getPrecoFinal() . "</td>";
+                       
+                        
                         echo "<td><img width='30' height='20' src='../content/images/images/a" . $outd->getImagem() . "'></td>";
-                        echo "<td>" . $outd->getEstado() . "</td>";
+                        
                         echo "<td>" . $outd->getComuna() . "</td>";
                         if (($aluguerRepository->isPdfNull($outd->getIdOutdoor()) == null)) {
                             echo '<td><a href="C:\xampp\htdocs\Sistema-Outdoors\content\pdf\a' . $aluguerRepository->getNomePdfById($outd->getIdOutdoor()) . '" download>Download do PDF</a></td>';
@@ -80,9 +80,9 @@ include_once '../model/Aluguer.php';
                             echo '<td><a href="pdf.php?id=' . $outd->getIdOutdoor() . '">Comprv</a></td>';
                         }
 
-                      
+                        echo '<td><a href="changeGestor.php?id=' . $outd->getIdOutdoor() . '">Alterar</a></td>';
                         echo"<form method='post'>";
-                        echo '<td><input type="submit" data-bs-toggle="modal"  id="idComp" name="idComp" data-bs-target="#exampleModal1"  class="btn btn-primary" value="Aprovar"></input>';
+                      
                         echo "<input type='text' hidden value=" . $outd->getIdOutdoor() . " name='valorId' class='form-control' id='valorId'>";
                         echo '<td><input type="submit" data-bs-toggle="modal"  id="idGest" name="idGest" data-bs-target="#exampleModal1"  class="btn btn-danger" value="Excluir"></input>';
 
@@ -107,17 +107,7 @@ include_once '../model/Aluguer.php';
             echo "<meta http-equiv=\"refresh\" content=\"0;\">";
         }
         ?>
-        <?php
-        $btn1 = filter_input(INPUT_POST, 'idComp');
-        
-        $al = new AluguerRepository();
-        
-        if (isset($btn1)) {
-            $al->changeEstado2($idNum, 'Ocupado');
-            echo "<meta http-equiv=\"refresh\" content=\"0;\">";
-        }
-        
-        ?>
+
 
 
     <script src="../Content/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

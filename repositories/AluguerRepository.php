@@ -7,7 +7,7 @@ class AluguerRepository
 
     public function registarAluguer(Aluguer $al)
     {
-        $sql = 'INSERT INTO aluguer (idOutdoor, idCliente, dataInicio, dataFim,precoFinal,comuna,imagem,estado) VALUES (?,?,?,?,?,?,?,?)';
+        $sql = 'INSERT INTO aluguer (idOutdoor, idCliente, dataInicio, dataFim,precoFinal,comuna,imagem,estado,idGestor) VALUES (?,?,?,?,?,?,?,?,?)';
 
         $stmt = Conexao::getConn()->prepare($sql);
         // $stmt = $conn->prepare($sql);
@@ -19,6 +19,7 @@ class AluguerRepository
         $stmt->bindValue(6, $al->getComuna());
         $stmt->bindValue(7, $al->getImagem());
         $stmt->bindValue(8, $al->getEstado());
+        $stmt->bindValue(9, $al->getIdGestor());
         
         
 
@@ -223,20 +224,74 @@ class AluguerRepository
     
         return null;
     }
+     public function updateAluguerPdf($idAluguer, $caminhoPdf) {
+        $sql = 'UPDATE aluguer SET pdf = ? WHERE idOutdoor = ?';
+        $stmt = Conexao::getConn()->prepare($sql);
+        $stmt->bindValue(1, $caminhoPdf);
+        $stmt->bindValue(2, $idAluguer);
+
+        if ($stmt->execute()) {
+            
+            return true;
+        } else {
+            
+            return false;
+        }
+    }
     
+    public function isPdfNull($idAluguer) {
+    $sql = 'SELECT pdf FROM aluguer WHERE idOutdoor = ?';
+    $stmt = Conexao::getConn()->prepare($sql);
+    $stmt->bindValue(1, $idAluguer);
+    $stmt->execute();
+
+    $resultado = $stmt->fetch(\PDO::FETCH_ASSOC);
+    $pdf = $resultado['pdf'];
+
+    return ($pdf === null);
+    }
+    
+    public function getNomePdfById($idAluguer) {
+    $sql = 'SELECT pdf FROM aluguer WHERE idOutdoor = ?';
+    $stmt = Conexao::getConn()->prepare($sql);
+    $stmt->bindValue(1, $idAluguer);
+    $stmt->execute();
+
+    $resultado = $stmt->fetch(\PDO::FETCH_ASSOC);
+    $pdf = $resultado['pdf'];
+
+    return $pdf;
+}
+
+public function changeEstado($id, $newState) {
+    $sql = 'UPDATE aluguer SET estado = ? WHERE idOutdoor = ?';
+    $stmt = Conexao::getConn()->prepare($sql);
+    $stmt->bindValue(1, $newState);
+    $stmt->bindValue(2, $id);
+    
+    return $stmt->execute();
+}
+public function changeEstado2($id, $newState) {
+    $sql = 'UPDATE aluguer SET estado = ? WHERE idGestor = ?';
+    $stmt = Conexao::getConn()->prepare($sql);
+    $stmt->bindValue(1, $newState);
+    $stmt->bindValue(2, $id);
+    
+    return $stmt->execute();
+}
     public function getClienteById($id) {
         $sql = 'SELECT idCliente FROM aluguer WHERE aluguer.idOutdoor = ?';
-    
+
         $stmt = Conexao::getConn()->prepare($sql);
         $stmt->bindValue(1, $id);
         $stmt->execute();
-    
+
         $resultado = $stmt->fetch(\PDO::FETCH_ASSOC);
-    
+
         if ($resultado !== false && isset($resultado["idCliente"])) {
             return $resultado["idCliente"];
         }
-    
+
         return null;
     }
 
@@ -260,11 +315,82 @@ class AluguerRepository
         $objecto->setComuna($resultado["comuna"]);
         $objecto->setImagem($resultado["imagem"]);
         $objecto->setEstado($resultado["estado"]);
+        $objecto->setPdf($resultado["pdf"]);
         $result[] = $objecto;
     }
 
     return $result;
 }
 
+ public function getAllAluguerPorGestor($idCliente)
+{
+    $sql = 'SELECT * FROM aluguer WHERE idGestor = ?';
+    $stmt = Conexao::getConn()->prepare($sql);
+    $stmt->bindValue(1, $idCliente);
+    $stmt->execute();
+
+    $result = array();
+
+    while ($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+        $objecto = new Aluguer();
+
+        $objecto->setIdOutdoor($resultado["idOutdoor"]);
+        $objecto->setIdCliente($resultado["idCliente"]);
+        $objecto->setDataInicio($resultado["dataInicio"]);
+        $objecto->setDataFim($resultado["dataFim"]);
+        $objecto->setPrecoFinal($resultado["precoFinal"]);
+        $objecto->setComuna($resultado["comuna"]);
+        $objecto->setImagem($resultado["imagem"]);
+        $objecto->setEstado($resultado["estado"]);
+        $objecto->setPdf($resultado["pdf"]);
+        $result[] = $objecto;
+    }
+
+    return $result;
+}
+
+ public function getAllIdGestorAluguer() {
+    $sql = 'SELECT idGestor FROM aluguer';
+    $stmt = Conexao::getConn()->prepare($sql);
+    $stmt->execute();
+
+    $idsAluguer = array();
+
+    while ($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+        $idsAluguer[] = $resultado["idGestor"];
+    }
+
+    return $idsAluguer;
+}
+
+public function getAllIdGestorAluguerPorId($idAluguer) {
+    $sql = 'SELECT idOutdoor FROM aluguer WHERE idGestor = ?';
+    $stmt = Conexao::getConn()->prepare($sql);
+    $stmt->bindValue(1, $idAluguer);
+    $stmt->execute();
+
+    $idsGestores = array();
+
+    while ($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+        $idsGestores[] = $resultado["idOutdoor"];
+    }
+
+    return $idsGestores;
+}
+
+public function alterarIdGestorPorIdOutdoor($idOutdoor, $novoIdGestor) {
+        $sql = 'UPDATE aluguer SET idGestor = ? WHERE idOutdoor = ?';
+        $stmt = Conexao::getConn()->prepare($sql);
+        $stmt->bindValue(1, $novoIdGestor);
+        $stmt->bindValue(2, $idOutdoor);
+
+        if ($stmt->execute()) {
+            // Atualização bem-sucedida
+            return true;
+        } else {
+            // Falha na atualização
+            return false;
+        }
+    }
 
 }

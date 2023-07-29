@@ -7,7 +7,9 @@ include_once '../services/EmailService.php';
 include_once '../model/User.php';
 
 $comunaRepository = new ComunaRepository();
-$gestController = new UserRepository();
+//$gestController = new UserRepository();
+
+
 $sent = new EmailService();
 ?>
 
@@ -155,7 +157,8 @@ if (isset($btn)) {
     $gestor->setTelefone($tel);
     $gestor->setPerfil($perfil);
     $gestor->setSenhaAlterada(0);
-    $gestController->registarUser($gestor);
+    $gestRepository->registarUser($gestor);
+    
     $msg = 'username: ' . $user . ' Nome: ' . $nome . ' Email: ' . $email . ' Morada: ' . $morada;
 
     $sent->mandarEmail($email, $msg, 'Nova Conta Gestor');

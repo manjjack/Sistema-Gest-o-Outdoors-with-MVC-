@@ -10,9 +10,10 @@ class Aluguer{
         private $imagem;
         private $estado;
         private $comuna;
+        private $pdf;
+        private $idGestor;
 
-
-        public function __construct($idOutdoor = null, $idCliente = null,$dataInicio=null, $dataFim = null, $precoFinal = null, $comuna = null, $estado =null,$imagem = null) {
+        public function __construct($idOutdoor = null, $idCliente = null,$dataInicio=null, $dataFim = null, $precoFinal = null, $comuna = null, $estado =null,$imagem = null, $pdf = null, $idGestor = null) {
         
         $this->idOutdoor = $idOutdoor;
         $this->idCliente= $idCliente;
@@ -21,8 +22,20 @@ class Aluguer{
         $this->dataInicio = $dataInicio;
         $this->imagem = $imagem;
         $this->estado = $estado;
+        $this->pdf = $pdf;
+        $this->idGestor = $idGestor;
     }
-    
+       
+
+    // Método "set" para definir o valor do $pdf
+    public function setPdf($pdf) {
+        $this->pdf = $pdf;
+    }
+
+    // Método "get" para obter o valor do $pdf
+    public function getPdf() {
+        return $this->pdf;
+    }
     public function getPrecoFinal() {
       return $this->precoFinal;
     }
@@ -94,4 +107,13 @@ class Aluguer{
         $this->estado = $novoEstado;
     }
     
+        public function getIdGestor() {
+        return $this->idGestor;
+    }
+
+    // Setter para $idGestor
+    public function setIdGestor($idGestor) {
+        $this->idGestor = $idGestor;
+    }
+
 }
